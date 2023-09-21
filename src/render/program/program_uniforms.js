@@ -11,6 +11,7 @@ import {debugUniforms} from './debug_program.js';
 import {clippingMaskUniforms} from './clipping_mask_program.js';
 import {heatmapUniforms, heatmapTextureUniforms} from './heatmap_program.js';
 import {hillshadeUniforms, hillshadePrepareUniforms} from './hillshade_program.js';
+import {slopeUniforms, slopePrepareUniforms} from './slope_program.js';
 import {lineUniforms, linePatternUniforms} from './line_program.js';
 import {rasterUniforms} from './raster_program.js';
 import {symbolIconUniforms, symbolSDFUniforms, symbolTextAndIconUniforms} from './symbol_program.js';
@@ -41,6 +42,8 @@ export const programUniforms = {
     heatmapTexture: heatmapTextureUniforms,
     hillshade: hillshadeUniforms,
     hillshadePrepare: hillshadePrepareUniforms,
+    slope: slopeUniforms,
+    slopePrepare: slopePrepareUniforms,
     line: lineUniforms,
     linePattern: linePatternUniforms,
     raster: rasterUniforms,

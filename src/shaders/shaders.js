@@ -39,6 +39,10 @@ import hillshadePrepareFrag from './hillshade_prepare.fragment.glsl';
 import hillshadePrepareVert from './hillshade_prepare.vertex.glsl';
 import hillshadeFrag from './hillshade.fragment.glsl';
 import hillshadeVert from './hillshade.vertex.glsl';
+import slopePrepareFrag from './slope_prepare.fragment.glsl';
+import slopePrepareVert from './slope_prepare.vertex.glsl';
+import slopeFrag from './slope.fragment.glsl';
+import slopeVert from './slope.vertex.glsl';
 import lineFrag from './line.fragment.glsl';
 import lineVert from './line.vertex.glsl';
 import linePatternFrag from './line_pattern.fragment.glsl';
@@ -141,6 +145,8 @@ export default {
     fillExtrusionPattern: compile(fillExtrusionPatternFrag, fillExtrusionPatternVert),
     hillshadePrepare: compile(hillshadePrepareFrag, hillshadePrepareVert),
     hillshade: compile(hillshadeFrag, hillshadeVert),
+    slopePrepare: compile(slopePrepareFrag, slopePrepareVert),
+    slope: compile(slopeFrag, slopeVert),
     line: compile(lineFrag, lineVert),
     linePattern: compile(linePatternFrag, linePatternVert),
     raster: compile(rasterFrag, rasterVert),

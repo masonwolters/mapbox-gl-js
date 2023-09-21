@@ -78,7 +78,7 @@ export default function validateLayer(options: Options): Array<ValidationError> 
                 errors.push(new ValidationError(key, layer.source, `layer "${layer.id}" requires a vector source`));
             } else if (sourceType === 'vector' && !layer['source-layer']) {
                 errors.push(new ValidationError(key, layer, `layer "${layer.id}" must specify a "source-layer"`));
-            } else if (sourceType === 'raster-dem' && type !== 'hillshade') {
+            } else if (sourceType === 'raster-dem' && type !== 'hillshade' && type !== 'slope') {
                 errors.push(new ValidationError(key, layer.source, 'raster-dem source can only be used with layer type \'hillshade\'.'));
             } else if (type === 'line' && layer.paint && (layer.paint['line-gradient'] || layer.paint['line-trim-offset']) &&
                        (sourceType !== 'geojson' || !source.lineMetrics)) {

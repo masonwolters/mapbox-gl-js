@@ -610,6 +610,14 @@
             }
           }
         },
+        "slope": {
+          "doc": "Client-side slope shading based on DEM data.",
+          "sdk-support": {
+            "basic functionality": {
+              "js": "2.15.0"
+            }
+          }
+        },
         "background": {
           "doc": "The background color or pattern of the map.",
           "sdk-support": {
