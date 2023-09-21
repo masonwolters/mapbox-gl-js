@@ -62,6 +62,14 @@ function renderSlope(painter: Painter, coord: OverscaledTileID, tile: Tile, laye
     context.activeTexture.set(gl.TEXTURE0);
     gl.bindTexture(gl.TEXTURE_2D, fbo.colorAttachment.get());
 
+    // bind color ramp texture
+    context.activeTexture.set(gl.TEXTURE1);
+    let colorRampTexture = layer.colorRampTexture;
+    if (!colorRampTexture) {
+        colorRampTexture = layer.colorRampTexture = new Texture(context, layer.colorRamp, gl.RGBA);
+    }
+    colorRampTexture.bind(gl.LINEAR, gl.CLAMP_TO_EDGE);
+
     const uniformValues = slopeUniformValues(painter, tile, layer, painter.terrain ? coord.projMatrix : null);
 
     painter.prepareDrawProgram(context, program, coord.toUnwrapped());

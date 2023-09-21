@@ -4254,6 +4254,7 @@
     "paint_symbol",
     "paint_raster",
     "paint_hillshade",
+    "paint_slope",
     "paint_background",
     "paint_sky"
   ],
@@ -6379,6 +6380,71 @@
     "hillshade-accent-color": {
       "type": "color",
       "default": "#000000",
+      "doc": "The shading color used to accentuate rugged terrain like sharp cliffs and gorges.",
+      "transition": true,
+      "sdk-support": {
+        "basic functionality": {
+          "js": "0.43.0",
+          "android": "6.0.0",
+          "ios": "4.0.0",
+          "macos": "0.7.0"
+        }
+      },
+      "expression": {
+        "interpolated": true,
+        "parameters": [
+          "zoom"
+        ]
+      },
+      "property-type": "data-constant"
+    }
+  },
+  "paint_slope": {
+    "slope-color-ramp": {
+      "type": "color",
+      "default": [
+        "interpolate",
+        [
+          "linear"
+        ],
+        [
+          "line-progress"
+        ],
+        0,
+        "rgba(0, 0, 255, 0)",
+        0.1,
+        "royalblue",
+        0.3,
+        "cyan",
+        0.5,
+        "lime",
+        0.7,
+        "yellow",
+        1,
+        "red"
+      ],
+      "doc": "Defines the color of each pixel based on its slope angle.  Should be an expression that uses `[\"line-progress\"]` as input.",
+      "transition": false,
+      "sdk-support": {
+        "basic functionality": {
+          "js": "0.41.0",
+          "android": "6.0.0",
+          "ios": "4.0.0",
+          "macos": "0.7.0"
+        },
+        "data-driven styling": {}
+      },
+      "expression": {
+        "interpolated": true,
+        "parameters": [
+          "line-progress"
+        ]
+      },
+      "property-type": "color-ramp"
+    },
+    "slope-accent-color": {
+      "type": "color",
+      "default": "#FF0303",
       "doc": "The shading color used to accentuate rugged terrain like sharp cliffs and gorges.",
       "transition": true,
       "sdk-support": {

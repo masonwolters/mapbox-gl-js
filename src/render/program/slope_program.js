@@ -25,9 +25,7 @@ export type SlopeUniformsType = {|
     'u_matrix': UniformMatrix4f,
     'u_image': Uniform1i,
     'u_latrange': Uniform2f,
-    'u_light': Uniform2f,
-    'u_shadow': UniformColor,
-    'u_highlight': UniformColor,
+    'u_color_ramp': Uniform1i,
     'u_accent': UniformColor
 |};
 
@@ -43,9 +41,7 @@ const slopeUniforms = (context: Context): SlopeUniformsType => ({
     'u_matrix': new UniformMatrix4f(context),
     'u_image': new Uniform1i(context),
     'u_latrange': new Uniform2f(context),
-    'u_light': new Uniform2f(context),
-    'u_shadow': new UniformColor(context),
-    'u_highlight': new UniformColor(context),
+    'u_color_ramp': new Uniform1i(context),
     'u_accent': new UniformColor(context)
 });
 
@@ -63,23 +59,14 @@ const slopeUniformValues = (
     layer: SlopeStyleLayer,
     matrix: ?Float32Array
 ): UniformValues<SlopeUniformsType> => {
-    const shadow = layer.paint.get("hillshade-shadow-color");
-    const highlight = layer.paint.get("hillshade-highlight-color");
-    const accent = layer.paint.get("hillshade-accent-color");
+    const accent = layer.paint.get("slope-accent-color");
 
-    let azimuthal = layer.paint.get('hillshade-illumination-direction') * (Math.PI / 180);
-    // modify azimuthal angle by map rotation if light is anchored at the viewport
-    if (layer.paint.get('hillshade-illumination-anchor') === 'viewport') {
-        azimuthal -= painter.transform.angle;
-    }
     const align = !painter.options.moving;
     return {
         'u_matrix': matrix ? matrix : painter.transform.calculateProjMatrix(tile.tileID.toUnwrapped(), align),
         'u_image': 0,
         'u_latrange': getTileLatRange(painter, tile.tileID),
-        'u_light': [layer.paint.get('hillshade-exaggeration'), azimuthal],
-        'u_shadow': shadow,
-        'u_highlight': highlight,
+        'u_color_ramp': 1,
         'u_accent': accent
     };
 };

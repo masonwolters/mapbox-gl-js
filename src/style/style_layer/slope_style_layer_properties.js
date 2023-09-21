@@ -19,21 +19,13 @@ import type ResolvedImage from '../../style-spec/expression/types/resolved_image
 
 
 export type PaintProps = {|
-    "hillshade-illumination-direction": DataConstantProperty<number>,
-    "hillshade-illumination-anchor": DataConstantProperty<"map" | "viewport">,
-    "hillshade-exaggeration": DataConstantProperty<number>,
-    "hillshade-shadow-color": DataConstantProperty<Color>,
-    "hillshade-highlight-color": DataConstantProperty<Color>,
-    "hillshade-accent-color": DataConstantProperty<Color>,
+    "slope-color-ramp": ColorRampProperty,
+    "slope-accent-color": DataConstantProperty<Color>,
 |};
 
 const paint: Properties<PaintProps> = new Properties({
-    "hillshade-illumination-direction": new DataConstantProperty(styleSpec["paint_hillshade"]["hillshade-illumination-direction"]),
-    "hillshade-illumination-anchor": new DataConstantProperty(styleSpec["paint_hillshade"]["hillshade-illumination-anchor"]),
-    "hillshade-exaggeration": new DataConstantProperty(styleSpec["paint_hillshade"]["hillshade-exaggeration"]),
-    "hillshade-shadow-color": new DataConstantProperty(styleSpec["paint_hillshade"]["hillshade-shadow-color"]),
-    "hillshade-highlight-color": new DataConstantProperty(styleSpec["paint_hillshade"]["hillshade-highlight-color"]),
-    "hillshade-accent-color": new DataConstantProperty(styleSpec["paint_hillshade"]["hillshade-accent-color"]),
+    "slope-color-ramp": new ColorRampProperty(styleSpec["paint_slope"]["slope-color-ramp"]),
+    "slope-accent-color": new DataConstantProperty(styleSpec["paint_slope"]["slope-accent-color"]),
 });
 
 // Note: without adding the explicit type annotation, Flow infers weaker types
