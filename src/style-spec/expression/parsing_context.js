@@ -229,5 +229,5 @@ function isConstant(expression: Expression) {
     }
 
     return isFeatureConstant(expression) &&
-        isGlobalPropertyConstant(expression, ['zoom', 'heatmap-density', 'line-progress', 'sky-radial-progress', 'accumulated', 'is-supported-script', 'pitch', 'distance-from-center']);
+        isGlobalPropertyConstant(expression, ['zoom', 'heatmap-density', 'line-progress', 'slope-angle', 'sky-radial-progress', 'accumulated', 'is-supported-script', 'pitch', 'distance-from-center']);
 }

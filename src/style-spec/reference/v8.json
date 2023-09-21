@@ -3312,6 +3312,18 @@
           }
         }
       },
+      "slope-angle": {
+        "doc": "Returns the slope angle in the range of 0-1 == 0-90 degrees. Can only be used in the `slope-color-ramp` property.",
+        "group": "Slope",
+        "sdk-support": {
+          "basic functionality": {
+            "js": "0.41.0",
+            "android": "6.0.0",
+            "ios": "4.0.0",
+            "macos": "0.7.0"
+          }
+        }
+      },
       "sky-radial-progress": {
         "doc": "Returns the distance of a point on the sky from the sun position. Returns 0 at sun position and 1 when the distance reaches `sky-gradient-radius`. Can only be used in the `sky-gradient` property.",
         "group": "sky",
@@ -6404,26 +6416,40 @@
       "type": "color",
       "default": [
         "interpolate",
-        [
-          "linear"
-        ],
-        [
-          "line-progress"
-        ],
+        ["linear"],
+        ["slope-angle"],
         0,
-        "rgba(0, 0, 255, 0)",
-        0.1,
-        "royalblue",
-        0.3,
-        "cyan",
-        0.5,
-        "lime",
-        0.7,
-        "yellow",
-        1,
-        "red"
+        "rgba(255, 255, 255, 0)",
+        0.29444444,
+        "rgba(255, 255, 255, 0)",
+        0.29455556,
+        "rgba(248, 253, 85, 1)",
+        0.32777778,
+        "rgba(248, 253, 85, 1)",
+        0.32788889,
+        "rgba(241, 184, 64, 1)",
+        0.35,
+        "rgba(241, 184, 64, 1)",
+        0.35011111,
+        "rgba(238, 128, 49, 1)",
+        0.38333333,
+        "rgba(238, 128, 49, 1)",
+        0.38344444,
+        "rgba(235, 51, 35, 1)",
+        0.50555556,
+        "rgba(235, 51, 35, 1)",
+        0.50566667,
+        "rgba(122, 41, 217, 1)",
+        0.56111111,
+        "rgba(122, 41, 217, 1)",
+        0.56122222,
+        "rgba(0, 38, 245, 1)",
+        0.66111111,
+        "rgba(0, 38, 245, 1)",
+        0.66122222,
+        "rgba(0, 0, 0, 1)"
       ],
-      "doc": "Defines the color of each pixel based on its slope angle.  Should be an expression that uses `[\"line-progress\"]` as input.",
+      "doc": "Defines the color of each pixel based on its slope angle.  Should be an expression that uses `[\"slope-angle\"]` as input (0-1 <-> 0-90 deg).",
       "transition": false,
       "sdk-support": {
         "basic functionality": {
@@ -6437,22 +6463,24 @@
       "expression": {
         "interpolated": true,
         "parameters": [
-          "line-progress"
+          "slope-angle"
         ]
       },
       "property-type": "color-ramp"
     },
-    "slope-accent-color": {
-      "type": "color",
-      "default": "#FF0303",
-      "doc": "The shading color used to accentuate rugged terrain like sharp cliffs and gorges.",
+    "slope-opacity": {
+      "type": "number",
+      "doc": "The opacity at which the shading will be drawn.",
+      "default": 1,
+      "minimum": 0,
+      "maximum": 1,
       "transition": true,
       "sdk-support": {
         "basic functionality": {
-          "js": "0.43.0",
-          "android": "6.0.0",
-          "ios": "4.0.0",
-          "macos": "0.7.0"
+          "js": "0.10.0",
+          "android": "2.0.1",
+          "ios": "2.0.0",
+          "macos": "0.1.0"
         }
       },
       "expression": {

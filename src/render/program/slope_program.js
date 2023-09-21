@@ -6,7 +6,6 @@ import {
     Uniform1i,
     Uniform1f,
     Uniform2f,
-    UniformColor,
     UniformMatrix4f,
     Uniform4f
 } from '../uniform_binding.js';
@@ -26,7 +25,7 @@ export type SlopeUniformsType = {|
     'u_image': Uniform1i,
     'u_latrange': Uniform2f,
     'u_color_ramp': Uniform1i,
-    'u_accent': UniformColor
+    'u_opacity': Uniform1f
 |};
 
 export type SlopePrepareUniformsType = {|
@@ -42,7 +41,7 @@ const slopeUniforms = (context: Context): SlopeUniformsType => ({
     'u_image': new Uniform1i(context),
     'u_latrange': new Uniform2f(context),
     'u_color_ramp': new Uniform1i(context),
-    'u_accent': new UniformColor(context)
+    'u_opacity': new Uniform1f(context)
 });
 
 const slopePrepareUniforms = (context: Context): SlopePrepareUniformsType => ({
@@ -59,7 +58,7 @@ const slopeUniformValues = (
     layer: SlopeStyleLayer,
     matrix: ?Float32Array
 ): UniformValues<SlopeUniformsType> => {
-    const accent = layer.paint.get("slope-accent-color");
+    const opacity = layer.paint.get("slope-opacity");
 
     const align = !painter.options.moving;
     return {
@@ -67,7 +66,7 @@ const slopeUniformValues = (
         'u_image': 0,
         'u_latrange': getTileLatRange(painter, tile.tileID),
         'u_color_ramp': 1,
-        'u_accent': accent
+        'u_opacity': opacity
     };
 };
 

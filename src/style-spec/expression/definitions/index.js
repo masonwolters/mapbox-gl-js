@@ -242,6 +242,11 @@ CompoundExpression.register(expressions, {
         [],
         (ctx) => ctx.globals.lineProgress || 0
     ],
+    'slope-angle': [
+        NumberType,
+        [],
+        (ctx) => ctx.globals.slopeAngle || 0
+    ],
     'sky-radial-progress': [
         NumberType,
         [],

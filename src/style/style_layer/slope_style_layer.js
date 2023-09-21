@@ -25,11 +25,17 @@ class SlopeStyleLayer extends StyleLayer {
         this._updateColorRamp();
     }
 
+    _handleSpecialPaintPropertyUpdate(name: string) {
+        if (name === 'slope-color-ramp') {
+            this._updateColorRamp();
+        }
+    }
+
     _updateColorRamp() {
         const expression = this._transitionablePaint._values['slope-color-ramp'].value.expression;
         this.colorRamp = renderColorRamp({
             expression,
-            evaluationKey: 'lineProgress',
+            evaluationKey: 'slopeAngle',
             image: this.colorRamp
         });
         this.colorRampTexture = null;

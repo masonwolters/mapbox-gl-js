@@ -3,7 +3,7 @@ uniform sampler2D u_color_ramp;
 varying vec2 v_pos;
 
 uniform vec2 u_latrange;
-uniform vec4 u_accent;
+uniform float u_opacity;
 
 void main() {
     vec4 pixel = texture2D(u_image, v_pos);
@@ -17,9 +17,10 @@ void main() {
     float slope = atan(1.25 * length(deriv) / scaleFactor);
     float aspect = deriv.x != 0.0 ? atan(deriv.y, -deriv.x) : PI / 2.0 * (deriv.y > 0.0 ? 1.0 : -1.0);
     
-    float maxSlope = 60.0 * PI / 180.0;
+    float maxSlope = PI / 2.0; // 90 degrees
     vec4 color = texture2D(u_color_ramp, vec2(slope / maxSlope, 0.5));
-    gl_FragColor = color;
+    
+    gl_FragColor = color * u_opacity;
 
 #ifdef LIGHTING_3D_MODE
     gl_FragColor = apply_lighting(gl_FragColor);
