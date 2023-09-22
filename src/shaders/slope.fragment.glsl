@@ -22,7 +22,13 @@ void main() {
     float slopeNormalized = slope / maxSlope;
 
     float maxAspect = PI * 2.0;
+
+    // this is a 0-1 value starting at due West and going counter-clockwise
     float aspectNormalized = (aspect + PI) / maxAspect;
+
+    // shift normalized aspect so 0 -> 1 is 0º (N) -> 360º clockwise
+    aspectNormalized = 1.0 - aspectNormalized - 0.25;
+    aspectNormalized = aspectNormalized < 0.0 ? aspectNormalized + 1.0 : aspectNormalized;
 
     vec4 color = texture2D(u_color_ramp, vec2(u_show_aspect ? aspectNormalized : slopeNormalized, 0.5));
     
