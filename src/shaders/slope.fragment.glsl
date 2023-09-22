@@ -13,8 +13,8 @@ void main() {
     // We divide the slope by a scale factor based on the cosin of the pixel's approximate latitude
     // to account for mercator projection distortion. see #4807 for details
     float scaleFactor = cos(radians((u_latrange[0] - u_latrange[1]) * (1.0 - v_pos.y) + u_latrange[1]));
-    // We also multiply the slope by an arbitrary z-factor of 1.25
-    float slope = atan(1.25 * length(deriv) / scaleFactor);
+    // We also multiply the slope by an arbitrary z-factor of 2.0. This most closesly resembles CalTopo
+    float slope = atan(2.0 * length(deriv) / scaleFactor);
     float aspect = deriv.x != 0.0 ? atan(deriv.y, -deriv.x) : PI / 2.0 * (deriv.y > 0.0 ? 1.0 : -1.0);
     
     float maxSlope = PI / 2.0; // 90 degrees
