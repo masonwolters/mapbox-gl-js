@@ -4,6 +4,7 @@ varying vec2 v_pos;
 
 uniform vec2 u_latrange;
 uniform float u_opacity;
+uniform bool u_show_aspect;
 
 void main() {
     vec4 pixel = texture2D(u_image, v_pos);
@@ -18,7 +19,12 @@ void main() {
     float aspect = deriv.x != 0.0 ? atan(deriv.y, -deriv.x) : PI / 2.0 * (deriv.y > 0.0 ? 1.0 : -1.0);
     
     float maxSlope = PI / 2.0; // 90 degrees
-    vec4 color = texture2D(u_color_ramp, vec2(slope / maxSlope, 0.5));
+    float slopeNormalized = slope / maxSlope;
+
+    float maxAspect = PI * 2.0;
+    float aspectNormalized = (aspect + PI) / maxAspect;
+
+    vec4 color = texture2D(u_color_ramp, vec2(u_show_aspect ? aspectNormalized : slopeNormalized, 0.5));
     
     gl_FragColor = color * u_opacity;
 

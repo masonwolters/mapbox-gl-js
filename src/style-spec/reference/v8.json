@@ -3312,7 +3312,7 @@
           }
         }
       },
-      "slope-angle": {
+      "slope-progress": {
         "doc": "Returns the slope angle in the range of 0-1 == 0-90 degrees. Can only be used in the `slope-color-ramp` property.",
         "group": "Slope",
         "sdk-support": {
@@ -6417,7 +6417,7 @@
       "default": [
         "interpolate",
         ["linear"],
-        ["slope-angle"],
+        ["slope-progress"],
         0,
         "rgba(255, 255, 255, 0)",
         0.29444444,
@@ -6449,7 +6449,7 @@
         0.66122222,
         "rgba(0, 0, 0, 1)"
       ],
-      "doc": "Defines the color of each pixel based on its slope angle.  Should be an expression that uses `[\"slope-angle\"]` as input (0-1 <-> 0-90 deg).",
+      "doc": "Defines the color of each pixel based on its slope angle.  Should be an expression that uses `[\"slope-progress\"]` as input (0-1 <-> 0-90 deg).",
       "transition": false,
       "sdk-support": {
         "basic functionality": {
@@ -6463,7 +6463,7 @@
       "expression": {
         "interpolated": true,
         "parameters": [
-          "slope-angle"
+          "slope-progress"
         ]
       },
       "property-type": "color-ramp"
@@ -6485,6 +6485,26 @@
       },
       "expression": {
         "interpolated": true,
+        "parameters": [
+          "zoom"
+        ]
+      },
+      "property-type": "data-constant"
+    },
+    "slope-show-aspect": {
+      "type": "boolean",
+      "default": false,
+      "doc": "If true, aspect will be used instead of slope angle.",
+      "sdk-support": {
+        "basic functionality": {
+          "js": "0.10.0",
+          "android": "2.0.1",
+          "ios": "2.0.0",
+          "macos": "0.1.0"
+        }
+      },
+      "expression": {
+        "interpolated": false,
         "parameters": [
           "zoom"
         ]

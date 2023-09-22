@@ -25,7 +25,8 @@ export type SlopeUniformsType = {|
     'u_image': Uniform1i,
     'u_latrange': Uniform2f,
     'u_color_ramp': Uniform1i,
-    'u_opacity': Uniform1f
+    'u_opacity': Uniform1f,
+    'u_show_aspect': Uniform1i
 |};
 
 export type SlopePrepareUniformsType = {|
@@ -41,7 +42,8 @@ const slopeUniforms = (context: Context): SlopeUniformsType => ({
     'u_image': new Uniform1i(context),
     'u_latrange': new Uniform2f(context),
     'u_color_ramp': new Uniform1i(context),
-    'u_opacity': new Uniform1f(context)
+    'u_opacity': new Uniform1f(context),
+    'u_show_aspect': new Uniform1i(context)
 });
 
 const slopePrepareUniforms = (context: Context): SlopePrepareUniformsType => ({
@@ -59,6 +61,7 @@ const slopeUniformValues = (
     matrix: ?Float32Array
 ): UniformValues<SlopeUniformsType> => {
     const opacity = layer.paint.get("slope-opacity");
+    const showAspect = layer.paint.get("slope-show-aspect");
 
     const align = !painter.options.moving;
     return {
@@ -66,7 +69,8 @@ const slopeUniformValues = (
         'u_image': 0,
         'u_latrange': getTileLatRange(painter, tile.tileID),
         'u_color_ramp': 1,
-        'u_opacity': opacity
+        'u_opacity': opacity,
+        'u_show_aspect': showAspect ? 1 : 0
     };
 };
 

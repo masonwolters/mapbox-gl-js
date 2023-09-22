@@ -21,11 +21,13 @@ import type ResolvedImage from '../../style-spec/expression/types/resolved_image
 export type PaintProps = {|
     "slope-color-ramp": ColorRampProperty,
     "slope-opacity": DataConstantProperty<number>,
+    "slope-show-aspect": DataConstantProperty<boolean>
 |};
 
 const paint: Properties<PaintProps> = new Properties({
     "slope-color-ramp": new ColorRampProperty(styleSpec["paint_slope"]["slope-color-ramp"]),
-    "slope-opacity": new DataConstantProperty(styleSpec["paint_heatmap"]["heatmap-opacity"]),
+    "slope-opacity": new DataConstantProperty(styleSpec["paint_slope"]["slope-opacity"]),
+    "slope-show-aspect": new DataConstantProperty(styleSpec["paint_slope"]["slope-show-aspect"]),
 });
 
 // Note: without adding the explicit type annotation, Flow infers weaker types
